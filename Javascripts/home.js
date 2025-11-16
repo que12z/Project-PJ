@@ -18,7 +18,7 @@ const uploadBtn = document.getElementById('menu-upload-button');
 const logoEl = document.querySelector('.logo');
 
 
-// bubble animation
+// bubble animation (peanut)
 let bubbleAnimating = false;
 let currentBubbleFrame = 0;
 let bubbleAnimationFrameId = null;
@@ -47,7 +47,7 @@ function stopBubbleAnimation() {
 }
 
 
-// fish animations
+// fish animations (may cai hinh lac lu wiggle wiggle)
 const fishes = [
   { el: document.querySelector('.fish-mock-1'), rotation: 7.52, dir: -1 },
   { el: document.querySelector('.fish-mock-2'), rotation: 7.52, dir: 1 },

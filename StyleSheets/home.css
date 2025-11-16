@@ -124,8 +124,8 @@ body {
   z-index: 2;
   width: calc((266.99 / 604) * 100%);
   height: calc(331.94 / 574 * 100%);
-  right: calc(-30 / 604 * 100%);
-  top: calc(160 / 574 * 100%);
+  right: calc(0 / 604 * 100%);
+  top: calc(170 / 574 * 100%);
   background-image: url('../Assets/fish-photobooth/homepage/photostrip-straight.png');
   transform: rotate(var(--strip-rotation));
 }
@@ -133,10 +133,10 @@ body {
 /* bubbles */
 .bubbles-mock {
   z-index: 2;
-  width: calc((82.09 / 604) * 150%);
-  height: calc(109 / 574 * 150%);
-  left: calc(26 / 604 * 100%);
-  top: calc(-20 / 574 * 100%);
+  width: calc((82.09 / 604) * 200%);
+  height: calc(109 / 574 * 200%);
+  left: calc(0 / 604 * 100%);
+  top: calc(-30/ 574 * 100%);
   background-image: url('../Assets/fish-photobooth/homepage/animated-bubbles-home/1.png');
   transform: rotate(var(--bubble-rotation));
 }
@@ -144,31 +144,31 @@ body {
 /* fishes */
 .fish-mock-1 {
   z-index: 3;
-  width: calc((72.65 / 604) * 100%);
-  height: calc(44.21 / 574 * 100%);
-  left: calc(25 / 604 * 100%);
-  top: calc(251.34 / 574 * 100%);
-  background-image: url('../Assets/fish-photobooth/homepage/goldfish.png');
+  width: calc((72.65 / 604) * 250%);
+  height: calc(44.21 / 574 * 250%);
+  left: calc(10 / 604 * 100%);
+  top: calc(320.34 / 574 * 100%);
+  background-image: url('../Assets/fish-photobooth/homepage/luke.png');
   transform: rotate(calc(-1 * var(--fish-rotation)));
 }
 
 .fish-mock-2 {
   z-index: 3;
-  width: calc((72.65 / 604) * 100%);
-  height: calc(44.21 / 574 * 100%);
-  left: calc(425.46 / 604 * 100%);
-  top: calc(8.69 / 574 * 100%);
-  background-image: url('../Assets/fish-photobooth/homepage/goldfish.png');
+  width: calc((72.65 / 604) * 200%);
+  height: calc(44.21 / 574 * 200%);
+  left: calc(450 / 604 * 100%);
+  top: calc(130.69 / 574 * 100%);
+  background-image: url('../Assets/fish-photobooth/homepage/doggo.png');
   transform: rotate(var(--fish-rotation));
 }
 
 .fish-mock-3 {
   z-index: 3;
-  width: calc((72.65 / 604) * 100%);
-  height: calc(44.21 / 574 * 100%);
-  right: calc(60 / 604 * 100%);
-  bottom: calc(10 / 574 * 100%);
-  background-image: url('../Assets/fish-photobooth/homepage/goldfish.png');
+  width: calc((72.65 / 604) * 250%);
+  height: calc(44.21 / 574 * 250%);
+  right: calc(30 / 604 * 100%);
+  bottom: calc(0 / 574 * 100%);
+  background-image: url('../Assets/fish-photobooth/homepage/loveu.png');
   transform: rotate(calc(-1 * var(--fish-rotation)));
 }
 
@@ -192,7 +192,6 @@ button {
 button:hover {
   transform: scale(1.05);
 }
-
 #select-button {
   display: flex;
   justify-content: center;

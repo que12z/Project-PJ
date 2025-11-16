@@ -8,6 +8,8 @@ An underwater-themed photobooth web application built with vanilla HTML, CSS, an
 - Add + drag and drop stickers 
 - Download your decorated photo strip
 - Fully responsive design
+- adjfhkjadfhdakfh
+
 
 ## Demo
 [http://photobooth.nashallery.com](http://photobooth.nashallery.com)

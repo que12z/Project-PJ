@@ -5,10 +5,10 @@ const bubbleContainer = document.querySelector(".bubble-container");
 const bubbleImages = [
   "Assets/fish-photobooth/camerapage/bubbles/5.png",
   "Assets/fish-photobooth/camerapage/bubbles/1.png",
-  "../Assets/fish-photobooth/camerapage/bubbles/2.png",
-  "../Assets/fish-photobooth/camerapage/bubbles/3.png",
-  "../Assets/fish-photobooth/camerapage/bubbles/6.png",
-  "../Assets/fish-photobooth/camerapage/bubbles/4.png"
+  "Assets/fish-photobooth/camerapage/bubbles/2.png",
+  "Assets/fish-photobooth/camerapage/bubbles/3.png",
+  "Assets/fish-photobooth/camerapage/bubbles/6.png",
+  "Assets/fish-photobooth/camerapage/bubbles/4.png"
 ];
 
 // create bubble

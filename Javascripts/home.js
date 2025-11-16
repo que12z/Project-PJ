@@ -67,7 +67,7 @@ function animateFish(index) {
 
   fishTimeouts[index] = setTimeout(() => {
     requestAnimationFrame(() => animateFish(index));
-  }, 200);
+  }, 600);
 }
 
 function startFishAnimation() {

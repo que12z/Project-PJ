@@ -11,6 +11,7 @@ const canvas = document.getElementById('finalCanvas'),
       addBubbleBtn = document.getElementById('addBubble'),
       downloadBtn = document.getElementById('downloadBtn'),
       homeBtn = document.getElementById('homeBtn'),
+      //deleteBtn = document.getElementById('delete')
       resetBtn = document.getElementById('reset');
 
 // sticker state
@@ -97,16 +98,29 @@ canvas.addEventListener('touchend', pointerUp);
 canvas.addEventListener('touchcancel', pointerUp);
 
 // stickers
-addFishBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/fish.png'));
-addOctopusBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/octopus.png'));
-
-const seaweedImages = ['Assets/fish-photobooth/camerapage/stickers/seaweed1.png','Assets/fish-photobooth/camerapage/stickers/seaweed2.png'], 
+const lukeImages = ['Assets/fish-photobooth/camerapage/stickers/l1.png','Assets/fish-photobooth/camerapage/stickers/l2.png',
+                    'Assets/fish-photobooth/camerapage/stickers/l3.png','Assets/fish-photobooth/camerapage/stickers/l4.png',
+                    'Assets/fish-photobooth/camerapage/stickers/l5.png','Assets/fish-photobooth/camerapage/stickers/l6.png'];
+      labImages = ['Assets/fish-photobooth/camerapage/stickers/lab1.png','Assets/fish-photobooth/camerapage/stickers/lab2.png',
+                  'Assets/fish-photobooth/camerapage/stickers/lab3.png','Assets/fish-photobooth/camerapage/stickers/lab4.png'], 
+      starImages = ['Assets/fish-photobooth/camerapage/stickers/s1.png','Assets/fish-photobooth/camerapage/stickers/s2.png',
+                    'Assets/fish-photobooth/camerapage/stickers/s3.png','Assets/fish-photobooth/camerapage/stickers/s4.png'],
+      otherImages = ['Assets/fish-photobooth/camerapage/stickers/o1.png','Assets/fish-photobooth/camerapage/stickers/o2.png',
+                    'Assets/fish-photobooth/camerapage/stickers/o3.png','Assets/fish-photobooth/camerapage/stickers/o4.png',
+                    'Assets/fish-photobooth/camerapage/stickers/o5.png','Assets/fish-photobooth/camerapage/stickers/o6.png',
+                    'Assets/fish-photobooth/camerapage/stickers/o7.png','Assets/fish-photobooth/camerapage/stickers/o8.png',
+                    'Assets/fish-photobooth/camerapage/stickers/o9.png'],
       bubbleImages = ['Assets/fish-photobooth/camerapage/stickers/bubble1.png','Assets/fish-photobooth/camerapage/stickers/bubble2.png'];
-let seaweedIndex = 0, bubbleIndex = 0;
+let lukeIndex = 0, labIndex = 0, starIndex = 0, otherIndex = 0, bubbleIndex = 0;
 
-addSeaweedBtn.addEventListener('click', () => { addSticker(seaweedImages[seaweedIndex]); seaweedIndex = (seaweedIndex + 1) % seaweedImages.length; });
-addAxBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/axolotl.png'));
+addFishBtn.addEventListener('click', () => { addSticker(lukeImages[lukeIndex]); lukeIndex = (lukeIndex + 1) % lukeImages.length; });
+addOctopusBtn.addEventListener('click', () => { addSticker(labImages[labIndex]); labIndex = (labIndex + 1) % labImages.length; });
+addSeaweedBtn.addEventListener('click', () => { addSticker(starImages[starIndex]); starIndex = (starIndex + 1) % starImages.length; });
+addAxBtn.addEventListener('click', () => { addSticker(otherImages[otherIndex]); otherIndex = (otherIndex + 1) % otherImages.length; });
 addBubbleBtn.addEventListener('click', () => { addSticker(bubbleImages[bubbleIndex]); bubbleIndex = (bubbleIndex + 1) % bubbleImages.length; });
+
+// delete
+//deleteBtn.addEventListener('click', () => { stickers = []; drawCanvas(); });
 
 // reset
 resetBtn.addEventListener('click', () => { stickers = []; drawCanvas(); });

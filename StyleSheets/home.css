@@ -84,7 +84,7 @@ body {
 }
 
 .menu-header {
-  width: 20rem;
+  width: 30rem;
   aspect-ratio: 517 / 68;
   background-image: url('../Assets/fish-photobooth/menupage/Header.png');
   background-size: cover;

@@ -11,7 +11,6 @@ const canvas = document.getElementById('finalCanvas'),
       addBubbleBtn = document.getElementById('addBubble'),
       downloadBtn = document.getElementById('downloadBtn'),
       homeBtn = document.getElementById('homeBtn'),
-      //deleteBtn = document.getElementById('delete')
       resetBtn = document.getElementById('reset');
 
 // sticker state
@@ -51,30 +50,47 @@ function addSticker(src) {
 
 // pointer position
 function getPointerPos(e) {
-  const rect = canvas.getBoundingClientRect(), scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
+  const rect = canvas.getBoundingClientRect(),
+        scaleX = canvas.width / rect.width,
+        scaleY = canvas.height / rect.height;
   const clientX = e.touches?.[0]?.clientX ?? e.clientX,
         clientY = e.touches?.[0]?.clientY ?? e.clientY;
   return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
 }
 
-// drag and drop
+// -------------------- POINTER EVENTS --------------------
+
+// pointerDown — EXTENDED DRAG AREA
 function pointerDown(e) {
   const { x: mouseX, y: mouseY } = getPointerPos(e);
+
+  const padding = 20; // <<< extra clickable area around sticker
+
   for (let i = stickers.length - 1; i >= 0; i--) {
     const s = stickers[i];
-    if (mouseX >= s.x && mouseX <= s.x + s.width && mouseY >= s.y && mouseY <= s.y + s.height) {
+    if (
+      mouseX >= s.x - padding &&
+      mouseX <= s.x + s.width + padding &&
+      mouseY >= s.y - padding &&
+      mouseY <= s.y + s.height + padding
+    ) {
       selectedSticker = s;
       s.dragging = true;
       dragOffset.x = mouseX - s.x;
       dragOffset.y = mouseY - s.y;
+
+      // bring sticker to top
       stickers.splice(i, 1);
       stickers.push(s);
+
       drawCanvas();
       e.preventDefault();
       break;
     }
   }
 }
+
+// pointerMove
 function pointerMove(e) {
   if (!selectedSticker?.dragging) return;
   const { x: mouseX, y: mouseY } = getPointerPos(e);
@@ -83,7 +99,29 @@ function pointerMove(e) {
   drawCanvas();
   e.preventDefault();
 }
-function pointerUp() { if (selectedSticker) selectedSticker.dragging = false; selectedSticker = null; }
+
+// pointerUp — SOFT THRESHOLD REMOVAL
+function pointerUp() {
+  if (selectedSticker) {
+    const s = selectedSticker;
+
+    const threshold = 500; // <<< soft threshold in pixels
+    const centerX = s.x + s.width / 2;
+    const centerY = s.y + s.height / 2;
+
+    if (
+      centerX < -threshold || centerX > WIDTH + threshold ||
+      centerY < -threshold || centerY > HEIGHT + threshold
+    ) {
+      const index = stickers.indexOf(s);
+      if (index > -1) stickers.splice(index, 1);
+    }
+
+    s.dragging = false;
+  }
+  selectedSticker = null;
+  drawCanvas();
+}
 
 // mouse events
 canvas.addEventListener('mousedown', pointerDown);
@@ -97,37 +135,33 @@ canvas.addEventListener('touchmove', pointerMove);
 canvas.addEventListener('touchend', pointerUp);
 canvas.addEventListener('touchcancel', pointerUp);
 
-// stickers
-const lukeImages = ['Assets/fish-photobooth/camerapage/stickers/l1.png','Assets/fish-photobooth/camerapage/stickers/l2.png',
-                    'Assets/fish-photobooth/camerapage/stickers/l3.png','Assets/fish-photobooth/camerapage/stickers/l4.png',
-                    'Assets/fish-photobooth/camerapage/stickers/l5.png','Assets/fish-photobooth/camerapage/stickers/l6.png'];
-      labImages = ['Assets/fish-photobooth/camerapage/stickers/lab1.png','Assets/fish-photobooth/camerapage/stickers/lab2.png',
-                  'Assets/fish-photobooth/camerapage/stickers/lab3.png','Assets/fish-photobooth/camerapage/stickers/lab4.png'], 
-      starImages = ['Assets/fish-photobooth/camerapage/stickers/s1.png','Assets/fish-photobooth/camerapage/stickers/s2.png',
-                    'Assets/fish-photobooth/camerapage/stickers/s3.png','Assets/fish-photobooth/camerapage/stickers/s4.png'],
-      otherImages = ['Assets/fish-photobooth/camerapage/stickers/o1.png','Assets/fish-photobooth/camerapage/stickers/o2.png',
-                    'Assets/fish-photobooth/camerapage/stickers/o3.png','Assets/fish-photobooth/camerapage/stickers/o4.png',
-                    'Assets/fish-photobooth/camerapage/stickers/o5.png','Assets/fish-photobooth/camerapage/stickers/o6.png',
-                    'Assets/fish-photobooth/camerapage/stickers/o7.png','Assets/fish-photobooth/camerapage/stickers/o8.png',
-                    'Assets/fish-photobooth/camerapage/stickers/o9.png'],
-      bubbleImages = ['Assets/fish-photobooth/camerapage/stickers/bubble1.png','Assets/fish-photobooth/camerapage/stickers/bubble2.png'];
-let lukeIndex = 0, labIndex = 0, starIndex = 0, otherIndex = 0, bubbleIndex = 0;
+// -------------------- STICKERS --------------------
+addFishBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/qok.png'));
+addOctopusBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/que.png'));
+addSeaweedBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/nug.png'));
 
-addFishBtn.addEventListener('click', () => { addSticker(lukeImages[lukeIndex]); lukeIndex = (lukeIndex + 1) % lukeImages.length; });
-addOctopusBtn.addEventListener('click', () => { addSticker(labImages[labIndex]); labIndex = (labIndex + 1) % labImages.length; });
-addSeaweedBtn.addEventListener('click', () => { addSticker(starImages[starIndex]); starIndex = (starIndex + 1) % starImages.length; });
-addAxBtn.addEventListener('click', () => { addSticker(otherImages[otherIndex]); otherIndex = (otherIndex + 1) % otherImages.length; });
-addBubbleBtn.addEventListener('click', () => { addSticker(bubbleImages[bubbleIndex]); bubbleIndex = (bubbleIndex + 1) % bubbleImages.length; });
+// multi sticker pack
+const axImages = ['Assets/fish-photobooth/camerapage/stickers/seaweed1.png',
+                  'Assets/fish-photobooth/camerapage/stickers/seaweed2.png'], 
+      bubbleImages = ['Assets/fish-photobooth/camerapage/stickers/bubble1.png',
+                      'Assets/fish-photobooth/camerapage/stickers/bubble2.png', 
+                      'Assets/fish-photobooth/camerapage/stickers/shell.png'];
+let axIndex = 0, bubbleIndex = 0;
 
-// delete
-//deleteBtn.addEventListener('click', () => { stickers = []; drawCanvas(); });
+addAxBtn.addEventListener('click', () => {addSticker(axImages[axIndex]); axIndex = (axIndex + 1) % axImages.length; });
+addBubbleBtn.addEventListener('click', () => {addSticker(bubbleImages[bubbleIndex]); bubbleIndex = (bubbleIndex + 1) % bubbleImages.length; });
 
 // reset
 resetBtn.addEventListener('click', () => { stickers = []; drawCanvas(); });
 
 // download
 downloadBtn.addEventListener('click', () => {
-  canvas.toBlob(blob => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'fish-photobooth.png'; a.click(); }, 'image/png');
+  canvas.toBlob(blob => { 
+    const a = document.createElement('a'); 
+    a.href = URL.createObjectURL(blob); 
+    a.download = 'fish-photobooth.png'; 
+    a.click(); 
+  }, 'image/png');
 });
 
 // home

@@ -141,11 +141,31 @@ addOctopusBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth
 addSeaweedBtn.addEventListener('click', () => addSticker('Assets/fish-photobooth/camerapage/stickers/nug.png'));
 
 // multi sticker pack
-const axImages = ['Assets/fish-photobooth/camerapage/stickers/seaweed1.png',
-                  'Assets/fish-photobooth/camerapage/stickers/seaweed2.png'], 
-      bubbleImages = ['Assets/fish-photobooth/camerapage/stickers/bubble1.png',
-                      'Assets/fish-photobooth/camerapage/stickers/bubble2.png', 
-                      'Assets/fish-photobooth/camerapage/stickers/shell.png'];
+const axImages = ['Assets/fish-photobooth/camerapage/stickers/s1/1.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/2.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/3.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/4.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/5.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/6.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/7.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/8.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/9.png',
+                  'Assets/fish-photobooth/camerapage/stickers/s1/10.png'], 
+      bubbleImages = ['Assets/fish-photobooth/camerapage/stickers/s2/1.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/2.png', 
+                      'Assets/fish-photobooth/camerapage/stickers/s2/3.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/4.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/5.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/6.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/7.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/8.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/9.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/10.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/11.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/12.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/13.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/14.png',
+                      'Assets/fish-photobooth/camerapage/stickers/s2/15.png'];
 let axIndex = 0, bubbleIndex = 0;
 
 addAxBtn.addEventListener('click', () => {addSticker(axImages[axIndex]); axIndex = (axIndex + 1) % axImages.length; });
